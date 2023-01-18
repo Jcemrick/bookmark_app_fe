@@ -1,12 +1,36 @@
 import {Form} from 'react-router-dom'
+import {useState} from 'react'
+
+//const formRef = useRef(null)
 
 function Index(props){
+    const [titleState, setTitleState] = useState('')
+    const [urlState, setUrlState] = useState('')
+    function handleSubmit(e){
+        console.log("SUBMITT")
+        setTitleState('')
+        setUrlState('')
+    }
+
     return (
     <div>
         <h1>Create a new Bookmark</h1>
-        <Form action = '/create' method='post'>
-            <input type='text' name ='title'/>
-            <input type='text' name = 'url'/>
+        <Form onSubmit={handleSubmit} action = '/create' method='post'>
+            <input 
+            type='text' 
+            name ='title'
+            placeholder='Title' 
+            value={titleState} 
+            onChange = {event => setTitleState(event.target.value)} 
+            />
+
+            <input 
+            type='text' 
+            name = 'url'
+            placeholder='URL'
+            value={urlState}
+            onChange = {event => setUrlState(event.target.value)}
+            />
             <input type='submit'/>
         </Form>
         <h1>INDEX COMPONENT</h1>
