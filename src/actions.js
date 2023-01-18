@@ -5,7 +5,7 @@ const URL = 'https://bookmark-app-pli9.onrender.com/'
 export const createAction = async ({request}) => {
   const formData = await request.formData()
   const newBookmark = {
-    name: formData.get("name"),
+    title: formData.get("title"),
     url: formData.get("url")
   }
   await fetch(URL + "bookmark", {
