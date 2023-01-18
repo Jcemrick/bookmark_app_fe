@@ -14,9 +14,9 @@ function Index(props){
 
     
         <h1>Create a new Bookmark</h1>
-        <Form>
-            <input type='text'/>
-            <input type='text'/>
+        <Form action = '/create' method='post'>
+            <input type='text' name ='title'/>
+            <input type='text' name = 'url'/>
             <input type='submit'/>
         </Form>
         </div>
