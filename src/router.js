@@ -7,7 +7,7 @@ import {
 import App from './App';
 import Index from './pages/Index'
 import Show from './pages/Show'
-import {createAction} from './Actions'
+import {createAction} from './actions'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
