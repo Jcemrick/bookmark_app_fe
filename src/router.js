@@ -14,6 +14,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
         <Route path = '' element={<Index />}/>
         <Route path = '/:id' element={<Show/>}/>
+        <Route path = 'create'/>
     </Route>)
 );
 
