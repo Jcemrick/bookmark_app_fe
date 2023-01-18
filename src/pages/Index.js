@@ -1,8 +1,30 @@
-import { Link, useLoaderData, Form} from 'react-router-dom'
+
+import {Form} from 'react-router-dom'
+import {useState} from 'react'
+
+//const formRef = useRef(null)
+
+function Index(props){
+    const [titleState, setTitleState] = useState('')
+    const [urlState, setUrlState] = useState('')
+    function handleSubmit(e){
+        console.log("SUBMITT")
+        setTitleState('')
+        setUrlState('')
+    }
+import { Link, useLoaderData} from 'react-router-dom'
 
 function Index(props){
     const bookmarks = useLoaderData()
 
+const [titleState, setTitleState] = useState('')
+    const [urlState, setUrlState] = useState('')
+    function handleSubmit(e){
+        console.log("SUBMITT")
+        setTitleState('')
+        setUrlState('')
+    }
+    
     return (
         <div>
             <h1>Bookmarked Pages</h1>
@@ -14,9 +36,22 @@ function Index(props){
 
     
         <h1>Create a new Bookmark</h1>
-        <Form action = '/create' method='post'>
-            <input type='text' name ='title'/>
-            <input type='text' name = 'url'/>
+        <Form onSubmit={handleSubmit} action = '/create' method='post'>
+            <input 
+            type='text' 
+            name ='title'
+            placeholder='Title' 
+            value={titleState} 
+            onChange = {event => setTitleState(event.target.value)} 
+            />
+
+            <input 
+            type='text' 
+            name = 'url'
+            placeholder='URL'
+            value={urlState}
+            onChange = {event => setUrlState(event.target.value)}
+            />
             <input type='submit'/>
         </Form>
         </div>
