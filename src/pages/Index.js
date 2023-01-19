@@ -1,6 +1,7 @@
 import { Link, useLoaderData, Form} from 'react-router-dom'
 import { useState } from 'react'
 import urlCorrector from '../urlfixer'
+import { deleteAction } from '../actions'
 
 function Index(props){
     const [titleState, setTitleState] = useState('')
@@ -28,12 +29,12 @@ function Index(props){
         <h1>Bookmarked Pages</h1>
         <div className='container'>
         {sorted.map((bookmark) => (
-            <div className='card'>
+            <div key={bookmark._id} className='card'>
                 <h1>{bookmark.title}</h1>
                 
-                <button><a href={bookmark.url}>Visit</a></button>
+                <button><a href={urlCorrector(bookmark.url)}>Visit</a></button>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={deleteAction}>Delete</button>
             </div>
         ))}
         </div>
