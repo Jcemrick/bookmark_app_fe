@@ -12,15 +12,6 @@ function Index(props){
         setTitleState('')
         setUrlState('')
     }
-    
-    //Search Bar controlled form
-    const [searchState, setSearchState] = useState('')
-    function handleSearchChange(event){
-        setSearchState(event.target.value)
-    }
-    function handleSearchSubmit(){
-        console.log(searchState)
-    }
 
     //Delete function
     function deleteBookmark(id) {
@@ -28,9 +19,9 @@ function Index(props){
          method: 'DELETE'
        })
     }
-
+    
+    //Sort loader data alphabetically
     const bookmarks = useLoaderData()
-
     const sorted = bookmarks.sort((a,b) => {
         if (a.title > b.title){
             return -1
@@ -39,13 +30,26 @@ function Index(props){
         }else {
             return 0
         }
-    })
+    })    
+
+    //Use state on sorted data, creating a state is what allows us to use setBookmarksState for the sake of search bar filtering results
+    const [bookmarksState, setBookmarksState] = useState(sorted)
+
+    //Search Bar controlled form
+    const [searchState, setSearchState] = useState('')
+    function handleSearchChange(event){
+        setSearchState(event.target.value)
+    }
+    function handleSearchSubmit(){
+        const searchResult = [...bookmarksState].filter(bookmark => bookmark.title === searchState)
+        setBookmarksState(searchResult)
+    }
 
     return (
     <div>
         <h1>Bookmarked Pages</h1>
         <div className='container'>
-        {sorted.map((bookmark) => (
+        {bookmarksState.map((bookmark) => (
             <div key={bookmark._id} className='card'>
                 <h1>{bookmark.title}</h1>
                 
