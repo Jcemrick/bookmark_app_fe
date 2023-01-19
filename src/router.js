@@ -16,8 +16,8 @@ const router = createBrowserRouter(
       <Route path="" element={<Index />} loader={bookmarkLoader}/>
       <Route path="/:id" element={<Show />} />
       <Route path="create" action={createAction} />
+      <Route path="edit/:id" />
       <Route path="update/:id" />
-      <Route path="delete/:id" />
     </Route>
   )
 )
