@@ -12,10 +12,21 @@ function Index(props){
 
     const bookmarks = useLoaderData()
 
+    const sorted = bookmarks.sort((a,b) => {
+        if (a.title > b.title){
+            return -1
+        }else if (a.title < b.title){
+            return 1
+        }else {
+            return 0
+        }
+    })
+    console.log(sorted)
+
     return (
     <div>
             <h1>Bookmarked Pages</h1>
-        {bookmarks.map((bookmark) => (
+        {sorted.map((bookmark) => (
             <div key={bookmark._id}>
                 <a href={bookmark.url}>{bookmark.title}</a> 
             </div>
