@@ -1,15 +1,20 @@
-.App{
-    display: flex;
-    flex-direction: column;
-}
 .header{
-    position: relative;
+    display: flex;
+    position:relative;
     top: 0px;
     left: 0px;
     background-color: red;
     width: 100%;
+    justify-content: center;
 }
 
 .main{
     background-color: blue;
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+}
+
+a{
+    color: white;
 }
