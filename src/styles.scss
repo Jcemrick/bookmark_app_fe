@@ -1,20 +1,35 @@
-.header{
-    display: flex;
-    position:relative;
-    top: 0px;
-    left: 0px;
-    background-color: red;
+
+
+a, button{
+    color: #6b705c;
+    text-decoration: none;
+}
+
+.container {
+    display: block;
+    overflow: auto;
+    height: 100%;
     width: 100%;
-    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 10rem;
+    background-color: #f5ebe0;
+    color: #6b705c;
 }
 
-.main{
-    background-color: blue;
-    display: flex;
-    justify-content: center;
-    color: aliceblue;
+footer, .header {
+    color: #6b705c;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #d6ccc2;
 }
 
-a{
-    color: white;
+footer {
+    bottom: 0;
+    padding-bottom: 1rem;
+}
+
+.header {
+    top: 0;
 }

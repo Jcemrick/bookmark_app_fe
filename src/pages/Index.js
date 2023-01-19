@@ -25,13 +25,20 @@ function Index(props){
 
     return (
     <div>
-            <h1>Bookmarked Pages</h1>
+        <h1>Bookmarked Pages</h1>
+        <div className='container'>
         {sorted.map((bookmark) => (
-            <div key={bookmark._id}>
-                <a href={urlCorrector(bookmark.url)}>{bookmark.title}</a> 
+            <div className='card'>
+                <h1>{bookmark.title}</h1>
+                
+                <button><a href={bookmark.url}>Visit</a></button>
+                <button>Edit</button>
+                <button>Delete</button>
             </div>
         ))}
-
+        </div>
+        
+        <footer>
         <h1>Create a new Bookmark</h1>
         <Form onSubmit={handleSubmit} action = '/create' method='post'>
             <input 
@@ -51,7 +58,7 @@ function Index(props){
             />
             <input type='submit'/>
         </Form>
-        <h1>INDEX COMPONENT</h1>
+        </footer>
     </div>
     )
 }
