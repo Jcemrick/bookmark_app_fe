@@ -4,6 +4,7 @@ import urlCorrector from '../urlfixer'
 import { deleteAction } from '../actions'
 
 function Index(props){
+    //Controlled creation form - empty upon submission
     const [titleState, setTitleState] = useState('')
     const [urlState, setUrlState] = useState('')
     function handleSubmit(e){
@@ -12,12 +13,21 @@ function Index(props){
         setUrlState('')
     }
     
-function deleteBookmark(id) {
-    fetch(`/bookmark/${id}`, {
-        method: 'DELETE'
-        })
+    //Search Bar controlled form
+    const [searchState, setSearchState] = useState('')
+    function handleSearchChange(event){
+        setSearchState(event.target.value)
+    }
+    function handleSearchSubmit(){
+        console.log(searchState)
     }
 
+    //Delete function
+    function deleteBookmark(id) {
+    fetch(`/bookmark/${id}`, {
+         method: 'DELETE'
+       })
+    }
 
     const bookmarks = useLoaderData()
 
@@ -40,13 +50,21 @@ function deleteBookmark(id) {
                 <h1>{bookmark.title}</h1>
                 
                 <button><a href={urlCorrector(bookmark.url)}>Visit</a></button>
-                <Link to='/Show'><button>Edit</button></Link>
+                <button>Edit</button>
                 <button onClick={() => deleteBookmark(bookmark._id)}>Delete</button>
             </div>
         ))}
         </div>
         
         <footer>
+        <h1>Search for a Bookmark</h1>
+        <Form onSubmit={handleSearchSubmit}>
+            <input type='text' 
+            value={searchState}
+            onChange={handleSearchChange}
+            />
+            <input type="submit"/>
+        </Form>
         <h1>Create a new Bookmark</h1>
         <Form onSubmit={handleSubmit} action = '/create' method='post'>
             <input 
