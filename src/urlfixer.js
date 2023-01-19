@@ -17,4 +17,4 @@ function urlCorrector(url){
     }
 }
 
-console.log(urlCorrector("reddit.com"))
+export default urlCorrector
