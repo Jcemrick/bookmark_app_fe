@@ -1,5 +1,6 @@
 import { Link, useLoaderData, Form} from 'react-router-dom'
 import { useState } from 'react'
+import urlCorrector from '../urlfixer'
 
 function Index(props){
     const [titleState, setTitleState] = useState('')
@@ -21,14 +22,13 @@ function Index(props){
             return 0
         }
     })
-    console.log(sorted)
 
     return (
     <div>
             <h1>Bookmarked Pages</h1>
         {sorted.map((bookmark) => (
             <div key={bookmark._id}>
-                <a href={bookmark.url}>{bookmark.title}</a> 
+                <a href={urlCorrector(bookmark.url)}>{bookmark.title}</a> 
             </div>
         ))}
 
