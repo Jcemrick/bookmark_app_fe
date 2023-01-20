@@ -4,6 +4,7 @@ import urlCorrector from '../urlfixer'
 import { deleteAction } from '../actions'
 
 function Index(props){
+    //Controlled creation form - empty upon submission
     const [titleState, setTitleState] = useState('')
     const [urlState, setUrlState] = useState('')
     function handleSubmit(e){
@@ -11,16 +12,16 @@ function Index(props){
         setTitleState('')
         setUrlState('')
     }
-    
-function deleteBookmark(id) {
+
+    //Delete function
+    function deleteBookmark(id) {
     fetch(`/bookmark/${id}`, {
-        method: 'DELETE'
-        })
+         method: 'DELETE'
+       })
     }
-
-
+    
+    //Sort loader data alphabetically
     const bookmarks = useLoaderData()
-
     const sorted = bookmarks.sort((a,b) => {
         if (a.title > b.title){
             return -1
@@ -29,24 +30,45 @@ function deleteBookmark(id) {
         }else {
             return 0
         }
-    })
+    })    
+
+    //Use state on sorted data, creating a state is what allows us to use setBookmarksState for the sake of search bar filtering results
+    const [bookmarksState, setBookmarksState] = useState(sorted)
+
+    //Search Bar controlled form
+    const [searchState, setSearchState] = useState('')
+    function handleSearchChange(event){
+        setSearchState(event.target.value)
+    }
+    function handleSearchSubmit(){
+        const searchResult = [...bookmarksState].filter(bookmark => bookmark.title === searchState)
+        setBookmarksState(searchResult)
+    }
 
     return (
     <div>
         <h1>Bookmarked Pages</h1>
         <div className='container'>
-        {sorted.map((bookmark) => (
+        {bookmarksState.map((bookmark) => (
             <div key={bookmark._id} className='card'>
                 <h1>{bookmark.title}</h1>
                 
                 <button><a href={urlCorrector(bookmark.url)}>Visit</a></button>
-                <Link to='/Show'><button>Edit</button></Link>
+                <button>Edit</button>
                 <button onClick={() => deleteBookmark(bookmark._id)}>Delete</button>
             </div>
         ))}
         </div>
         
         <footer>
+        <h1>Search for a Bookmark</h1>
+        <Form onSubmit={handleSearchSubmit}>
+            <input type='text' 
+            value={searchState}
+            onChange={handleSearchChange}
+            />
+            <input type="submit"/>
+        </Form>
         <h1>Create a new Bookmark</h1>
         <Form onSubmit={handleSubmit} action = '/create' method='post'>
             <input 
