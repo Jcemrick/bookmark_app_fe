@@ -18,17 +18,10 @@ export const createAction = async ({request}) => {
   return redirect('/')
 }
 
-export const deleteAction = async ({ params }) => {
-  await fetch(URL + params.id, {
-    method: 'delete'
-  })
-  return redirect('/')
-}
-
 export const updateAction = async ({ request, params }) => {
   const formData = await request.formData()
   const updatedBookmark = {
-    name: formData.get('name'),
+    name: formData.get('title'),
     url: formData.get('url')
   }
 
@@ -41,3 +34,12 @@ export const updateAction = async ({ request, params }) => {
   })
   return redirect('/')
 }
+
+export const deleteAction = async ({ params }) => {
+  await fetch(URL + params.id, {
+    method: 'delete'
+  })
+  return redirect('/')
+}
+
+
