@@ -1,7 +1,7 @@
 import { Link, useLoaderData, Form} from 'react-router-dom'
 import { useState } from 'react'
 import urlCorrector from '../urlfixer'
-import { deleteAction } from '../actions'
+
 
 function Index(props){
     //Controlled creation form - empty upon submission
@@ -16,7 +16,7 @@ function Index(props){
     //Delete function
     function deleteBookmark(id) {
     fetch(`/bookmark/${id}`, {
-         method: 'DELETE'
+        method: 'DELETE'
        })
     }
     
