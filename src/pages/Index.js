@@ -47,7 +47,7 @@ function Index(props){
                 <h1>{bookmark.title}</h1>
                 
                 <button><a href={urlCorrector(bookmark.url)}>Visit</a></button>
-                <button>Edit</button>
+                <Link to={`/${bookmark._id}`}><button>Edit</button></Link>
             </div>
         ))}
         </div>
