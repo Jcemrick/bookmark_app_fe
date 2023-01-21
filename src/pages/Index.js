@@ -12,13 +12,6 @@ function Index(props){
         setTitleState('')
         setUrlState('')
     }
-
-    //Delete function
-    function deleteBookmark(id) {
-    fetch(`/bookmark/${id}`, {
-        method: 'DELETE'
-       })
-    }
     
     //Sort loader data alphabetically
     const bookmarks = useLoaderData()
@@ -55,7 +48,6 @@ function Index(props){
                 
                 <button><a href={urlCorrector(bookmark.url)}>Visit</a></button>
                 <button>Edit</button>
-                <button onClick={() => deleteBookmark(bookmark._id)}>Delete</button>
             </div>
         ))}
         </div>
