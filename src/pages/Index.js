@@ -78,7 +78,7 @@ function Index(props){
             value={urlState}
             onChange = {event => setUrlState(event.target.value)}
             />
-            <input type='submit'/>
+            <input type='submit' value="Create"/>
         </Form>
         </footer>
     </div>
