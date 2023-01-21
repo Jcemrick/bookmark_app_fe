@@ -1,6 +1,6 @@
 import { redirect } from 'react-router-dom'
 
-const URL = 'https://bookmark-api-alec.onrender.com/'
+const URL = 'https://bookmark-api-alec.onrender.com'
 
 export const createAction = async ({request}) => {
   const formData = await request.formData()
@@ -8,7 +8,7 @@ export const createAction = async ({request}) => {
     title: formData.get("title"),
     url: formData.get("url")
   }
-  await fetch(URL + "bookmark", {
+  await fetch(URL + "/bookmark", {
     method: "post",
     headers: {
       'Content-Type':"application/json"
@@ -21,11 +21,11 @@ export const createAction = async ({request}) => {
 export const updateAction = async ({ request, params }) => {
   const formData = await request.formData()
   const updatedBookmark = {
-    name: formData.get('title'),
-    url: formData.get('url')
+    name: formData.get("title"),
+    url: formData.get("url")
   }
 
-  await fetch(URL + params.id, {
+  await fetch(URL + `/bookmark/${params.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json'
@@ -35,9 +35,12 @@ export const updateAction = async ({ request, params }) => {
   return redirect('/')
 }
 
-export const deleteAction = async ({ params }) => {
-  await fetch(URL + params.id, {
-    method: 'delete'
+export const deleteAction = async ({req, params }) => {
+  await fetch(URL + `/bookmark/${params.id}`, {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
   return redirect('/')
 }
