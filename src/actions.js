@@ -18,10 +18,10 @@ export const createAction = async ({request}) => {
   return redirect('/')
 }
 
-export const updateAction = async ({req, params}) => {
-  const formData = await req.formData();
+export const updateAction = async ({request, params}) => {
+  const formData = await request.formData();
 
-  const updatedBookmark = {
+  const newBookmark = {
       title: formData.get("title"),
       url: formData.get("url")
   }
@@ -31,12 +31,12 @@ export const updateAction = async ({req, params}) => {
       headers:{
           "Content-Type": "application/json"
       },
-      body: JSON.stringify(updatedBookmark)
+      body: JSON.stringify(newBookmark)
   })
 return redirect("/")
 }
 
-export const deleteAction = async ({req, params }) => {
+export const deleteAction = async ({ params }) => {
   await fetch(URL + `/bookmark/${params.id}`, {
     method: 'delete',
     headers: {
