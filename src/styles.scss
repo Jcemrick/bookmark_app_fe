@@ -1,9 +1,12 @@
-a, button{
+a, button, input{
     color: #6b705c;
     text-decoration: none;
+    margin: 2px;
 }
 
-.container {
+
+
+.container, .update {
     display: block;
     overflow: auto;
     height: 100%;
@@ -12,6 +15,11 @@ a, button{
     padding-bottom: 15rem;
     background-color: #f5ebe0;
     color: #6b705c;
+}
+
+.card {
+    height: 5rem;
+    width: 10rem;
 }
 
 footer, .header {
