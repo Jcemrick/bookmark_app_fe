@@ -4,7 +4,7 @@ function Show(props) {
   const bookmarks = useLoaderData()
 
   return (
-    <div>
+    <div className="update">
       <h2>{bookmarks.title}</h2>
       <Form action={`/update/${bookmarks._id}`} method="post">
         <input type="text" name="title" placeholder="Bookmark Title" /><br/>
