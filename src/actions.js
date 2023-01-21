@@ -1,6 +1,6 @@
 import { redirect } from 'react-router-dom'
 
-const URL = 'https://bookmark-app-pli9.onrender.com/'
+const URL = 'https://bookmark-api-alec.onrender.com/'
 
 export const createAction = async ({request}) => {
   const formData = await request.formData()
